@@ -1,86 +1,193 @@
-//
-//  ContentView.swift
-//  effectMobileTestTask
-//
-//  Created by Роман on 08.04.2025.
-//
-
 import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
 
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
+    @StateObject private var viewModel = TaskListViewModel()
+    @StateObject private var speechRecognizer = SpeechRecognizer()
+
+    @FocusState private var isSearchFocused: Bool
+
+    @State private var isRecording = false
+    @State private var searchText: String = ""
+    @State private var isNavigatingToNewTask = false
+    @State private var selectedTask: TaskEntity? = nil
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-            Text("Select an item")
+            content
         }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        .onAppear {
+            Task {
+                await viewModel.loadTasksIfNeeded()
             }
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+    @ViewBuilder
+    private var content: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            header
+            contentState
+            NavigationLink(
+                destination: TaskDetailView(existingTask: selectedTask),
+                isActive: $isNavigatingToNewTask
+            ) {
+                EmptyView()
             }
+            .background(Color(.systemGray6))
+            .ignoresSafeArea(.all)
+            taskFooter
+        }
+        .onChange(of: speechRecognizer.transcribedText) { newValue in
+            searchText = newValue
+        }
+    }
+
+    private var header: some View {
+        Text("Задачи")
+            .font(.largeTitle).bold()
+            .foregroundColor(.primary)
+            .padding(.horizontal)
+    }
+
+    @ViewBuilder
+    private var contentState: some View {
+        if viewModel.isLoading {
+            ProgressView("Загрузка задач...")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if let error = viewModel.errorMessage {
+            Text("Ошибка: \(error)")
+                .foregroundColor(.red)
+                .multilineTextAlignment(.center)
+                .padding()
+        } else {
+            searchBar
+            taskList
+        }
+    }
+
+    private var searchBar: some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(.gray)
+
+            TextField("Поиск", text: $searchText)
+                .textFieldStyle(PlainTextFieldStyle())
+                .foregroundColor(.primary)
+                .tint(.yellow)
+                .focused($isSearchFocused)
+
+            Button(action: {
+                if isRecording {
+                    speechRecognizer.stopRecording()
+                    isRecording = false
+                } else {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                        isSearchFocused = true
+                    }
+                    speechRecognizer.startRecording()
+                    isRecording = true
+                }
+            }) {
+                Image(systemName: isRecording ? "mic.circle.fill" : "mic.fill")
+                    .foregroundColor(.gray)
+            }
+        }
+        .padding(10)
+        .background(Color(.systemGray5))
+        .cornerRadius(10)
+        .padding(.horizontal)
+    }
+
+    private var taskList: some View {
+        let filteredItems = viewModel.items.filter {
+            searchText.isEmpty ? true :
+            ($0.title?.lowercased().contains(searchText.lowercased()) ?? false) ||
+            ($0.desc?.lowercased().contains(searchText.lowercased()) ?? false)
+        }
+
+        return List {
+            ForEach(filteredItems, id: \.self) { (task: TaskEntity) in
+                NavigationLink(destination: TaskDetailView(existingTask: task)) {
+                    UIViewRowStyle(task: task)
+                        .contextMenu {
+                            Button {
+                                isNavigatingToNewTask = false
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    selectedTask = task
+                                    isNavigatingToNewTask = true
+                                }
+                            } label: {
+                                Label("Редактировать", systemImage: "pencil")
+                            }
+
+                            Button {
+                                share(task: task)
+                            } label: {
+                                Label("Поделиться", systemImage: "square.and.arrow.up")
+                            }
+
+                            Button(role: .destructive) {
+                                Task {
+                                    await viewModel.delete(task: task)
+                                    }
+                            } label: {
+                                Label("Удалить", systemImage: "trash")
+                            }
+                        }
+                }
+                .listRowSeparator(.hidden)
+            }
+        }
+        .listStyle(.plain)
+    }
+
+    private var taskFooter: some View {
+        ZStack {
+            HStack {
+                Text("\(viewModel.items.count) задач")
+                    .font(.system(size: 13, weight: .regular))
+                    .foregroundColor(.primary)
+                    .frame(maxWidth: .infinity, alignment: .center)
+            }
+            HStack {
+                Spacer()
+                Button(action: {
+                    selectedTask = nil
+                    isNavigatingToNewTask = true
+                }) {
+                    Image(systemName: "square.and.pencil")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 24, height: 24)
+                        .foregroundColor(.yellow)
+                        .padding(.horizontal)
+                }
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .background(Color(.systemGray6))
+        .ignoresSafeArea(.all)
+    }
+
+    private func share(task: TaskEntity) {
+        var message = task.title ?? "Задача"
+        if let desc = task.desc, !desc.isEmpty {
+            message += "\n\nОписание: \(desc)"
+        }
+
+        let activityVC = UIActivityViewController(activityItems: [message], applicationActivities: nil)
+
+        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            scene.windows.first?.rootViewController?.present(activityVC, animated: true)
         }
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
 #Preview {
-    ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    let context = PersistenceController.preview.container.viewContext
+    return ContentView()
+        .environment(\.managedObjectContext, context)
 }

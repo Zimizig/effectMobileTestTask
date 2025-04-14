@@ -15,8 +15,7 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newItem = TaskEntity(context: viewContext)
         }
         do {
             try viewContext.save()
@@ -53,5 +52,15 @@ struct PersistenceController {
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
+    }
+    
+    func toggleTaskCompletion(_ task: TaskEntity, context: NSManagedObjectContext) {
+        task.isCompleted.toggle()
+        do {
+            try context.save()
+            print("Статус задачи '\(task.title ?? "Без названия")' изменён на \(task.isCompleted ? "выполнена" : "не выполнена")")
+        } catch {
+            print("Не удалось изменить статус задачи: \(error.localizedDescription)")
+        }
     }
 }

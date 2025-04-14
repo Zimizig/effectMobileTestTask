@@ -6,6 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2C7D01982DA8A17C00FC8E3E /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7D01972DA8A17C00FC8E3E /* SpeechRecognizer.swift */; };
+		2CBE10EA2DA46F84005B7C7C /* effectMobileTestTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE10E32DA46F84005B7C7C /* effectMobileTestTask.xcdatamodeld */; };
+		2CBE10FB2DA48597005B7C7C /* YellowPrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE10FA2DA48597005B7C7C /* YellowPrimaryButtonStyle.swift */; };
+		2CBE10FF2DA48DEF005B7C7C /* UIViewRowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE10FE2DA48DEF005B7C7C /* UIViewRowStyle.swift */; };
+		2CBE11022DA60B1E005B7C7C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE11012DA60B1E005B7C7C /* NetworkService.swift */; };
+		2CBE11052DA6112E005B7C7C /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE11042DA6112E005B7C7C /* TaskListViewModel.swift */; };
+		2CBE110B2DA63520005B7C7C /* AppStorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE110A2DA63520005B7C7C /* AppStorageKeys.swift */; };
+		2CBE110E2DA68E35005B7C7C /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE110D2DA68E35005B7C7C /* TaskDetailView.swift */; };
+		2CFC85282DA46F0A008C51F0 /* TaskEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFC85262DA46F0A008C51F0 /* TaskEntity+CoreDataClass.swift */; };
+		2CFC85292DA46F0A008C51F0 /* TaskEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFC85272DA46F0A008C51F0 /* TaskEntity+CoreDataProperties.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		2C4A3DD72DA45D4100CA818A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,11 +40,34 @@
 		2C4A3DC42DA45D3F00CA818A /* effectMobileTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = effectMobileTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4A3DD62DA45D4100CA818A /* effectMobileTestTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = effectMobileTestTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4A3DE02DA45D4100CA818A /* effectMobileTestTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = effectMobileTestTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C7D01972DA8A17C00FC8E3E /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		2CBE10E72DA46F84005B7C7C /* effectMobileTestTask.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = effectMobileTestTask.xcdatamodel; sourceTree = "<group>"; };
+		2CBE10FA2DA48597005B7C7C /* YellowPrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YellowPrimaryButtonStyle.swift; sourceTree = "<group>"; };
+		2CBE10FE2DA48DEF005B7C7C /* UIViewRowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewRowStyle.swift; sourceTree = "<group>"; };
+		2CBE11012DA60B1E005B7C7C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		2CBE11042DA6112E005B7C7C /* TaskListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
+		2CBE110A2DA63520005B7C7C /* AppStorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorageKeys.swift; sourceTree = "<group>"; };
+		2CBE110D2DA68E35005B7C7C /* TaskDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailView.swift; sourceTree = "<group>"; };
+		2CFC85262DA46F0A008C51F0 /* TaskEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2CFC85272DA46F0A008C51F0 /* TaskEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2C7D019A2DA8AB1A00FC8E3E /* Exceptions for "effectMobileTestTask" folder in "effectMobileTestTask" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 2C4A3DC32DA45D3F00CA818A /* effectMobileTestTask */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		2C4A3DC62DA45D3F00CA818A /* effectMobileTestTask */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2C7D019A2DA8AB1A00FC8E3E /* Exceptions for "effectMobileTestTask" folder in "effectMobileTestTask" target */,
+			);
 			path = effectMobileTestTask;
 			sourceTree = "<group>";
 		};
@@ -78,6 +114,12 @@
 				2C4A3DC62DA45D3F00CA818A /* effectMobileTestTask */,
 				2C4A3DD92DA45D4100CA818A /* effectMobileTestTaskTests */,
 				2C4A3DE32DA45D4100CA818A /* effectMobileTestTaskUITests */,
+				2CBE110C2DA68E1E005B7C7C /* Views */,
+				2C7D01962DA8A15800FC8E3E /* Services */,
+				2CBE11032DA610EE005B7C7C /* ViewModels */,
+				2CBE10F92DA484CC005B7C7C /* Styles */,
+				2CBE11092DA63500005B7C7C /* Core */,
+				2CBE11002DA60AFE005B7C7C /* Network */,
 				2C4A3DC52DA45D3F00CA818A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +132,58 @@
 				2C4A3DE02DA45D4100CA818A /* effectMobileTestTaskUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2C7D01962DA8A15800FC8E3E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2C7D01972DA8A17C00FC8E3E /* SpeechRecognizer.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2CBE10F92DA484CC005B7C7C /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				2CBE10FA2DA48597005B7C7C /* YellowPrimaryButtonStyle.swift */,
+				2CBE10FE2DA48DEF005B7C7C /* UIViewRowStyle.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		2CBE11002DA60AFE005B7C7C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				2CBE11012DA60B1E005B7C7C /* NetworkService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		2CBE11032DA610EE005B7C7C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2CBE11042DA6112E005B7C7C /* TaskListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2CBE11092DA63500005B7C7C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				2CBE10E32DA46F84005B7C7C /* effectMobileTestTask.xcdatamodeld */,
+				2CFC85272DA46F0A008C51F0 /* TaskEntity+CoreDataProperties.swift */,
+				2CFC85262DA46F0A008C51F0 /* TaskEntity+CoreDataClass.swift */,
+				2CBE110A2DA63520005B7C7C /* AppStorageKeys.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		2CBE110C2DA68E1E005B7C7C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2CBE110D2DA68E35005B7C7C /* TaskDetailView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +330,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CBE110E2DA68E35005B7C7C /* TaskDetailView.swift in Sources */,
+				2CBE11022DA60B1E005B7C7C /* NetworkService.swift in Sources */,
+				2CFC85282DA46F0A008C51F0 /* TaskEntity+CoreDataClass.swift in Sources */,
+				2CFC85292DA46F0A008C51F0 /* TaskEntity+CoreDataProperties.swift in Sources */,
+				2CBE110B2DA63520005B7C7C /* AppStorageKeys.swift in Sources */,
+				2C7D01982DA8A17C00FC8E3E /* SpeechRecognizer.swift in Sources */,
+				2CBE11052DA6112E005B7C7C /* TaskListViewModel.swift in Sources */,
+				2CBE10EA2DA46F84005B7C7C /* effectMobileTestTask.xcdatamodeld in Sources */,
+				2CBE10FF2DA48DEF005B7C7C /* UIViewRowStyle.swift in Sources */,
+				2CBE10FB2DA48597005B7C7C /* YellowPrimaryButtonStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,11 +504,15 @@
 				DEVELOPMENT_TEAM = 9FWV8TD269;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = effectMobileTestTask/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Нужен доступ к микрофону для голосового ввода";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Нужен доступ к распознаванию речи для голосового поиска";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -412,9 +520,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Ramazanow-Roman.effectMobileTestTask";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -428,11 +540,15 @@
 				DEVELOPMENT_TEAM = 9FWV8TD269;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = effectMobileTestTask/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Нужен доступ к микрофону для голосового ввода";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Нужен доступ к распознаванию речи для голосового поиска";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -440,9 +556,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Ramazanow-Roman.effectMobileTestTask";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -558,6 +678,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2CBE10E32DA46F84005B7C7C /* effectMobileTestTask.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2CBE10E72DA46F84005B7C7C /* effectMobileTestTask.xcdatamodel */,
+			);
+			currentVersion = 2CBE10E72DA46F84005B7C7C /* effectMobileTestTask.xcdatamodel */;
+			path = effectMobileTestTask.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2C4A3DBC2DA45D3F00CA818A /* Project object */;
 }
