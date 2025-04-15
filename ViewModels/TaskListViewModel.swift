@@ -23,10 +23,11 @@ final class TaskListViewModel: ObservableObject {
     func loadTasksIfNeeded() async {
         isLoading = true
         errorMessage = nil
+        print("🟡 loadTasksIfNeeded вызван")
         
-        //print("🚩 Первый запуск: \(isFirstLaunch)")
         
         if isFirstLaunch {
+            print("🟢 Первый запуск — грузим из сети")
             await loadFromNetworkAndSave()
             isFirstLaunch = false
         }
@@ -43,12 +44,11 @@ final class TaskListViewModel: ObservableObject {
             let result = try context.fetch(request)
             DispatchQueue.main.async {
                 self.items = result
-                //print("📦 Загружено задач из CoreData: \(result.count)")
+                print("📦 Загружено задач из CoreData: \(result.count)")
             }
         } catch {
-            DispatchQueue.main.async {
-                self.errorMessage = error.localizedDescription
-            }
+            self.errorMessage = error.localizedDescription
+            print("❌ Ошибка при загрузке: \(error)")
         }
     }
     
@@ -64,12 +64,12 @@ final class TaskListViewModel: ObservableObject {
     }
     
     private func loadFromNetworkAndSave() async {
-             print("🌐 Начинаем загрузку из сети...")
+             //print("🌐 Начинаем загрузку из сети...")
             do {
                 let result = try await NetworkService.shared.fetchTasks()
-                print("✅ Получено задач из API: \(result.count)")
+                //print("✅ Получено задач из API: \(result.count)")
                 for task in result {
-                    print("📝 \(task.todo)")
+                    //print("📝 \(task.todo)")
                     let entity = TaskEntity(context: context)
                     entity.id = UUID()
                     entity.title = task.todo
@@ -78,9 +78,9 @@ final class TaskListViewModel: ObservableObject {
                     entity.createdAt = Date()
                 }
                 try context.save()
-                print("✅ Задачи успешно сохранены в Core Data.")
+                //print("✅ Задачи успешно сохранены в Core Data.")
             } catch {
-                print("❌ Ошибка при загрузке или сохранении: \(error.localizedDescription)")
+                //print("❌ Ошибка при загрузке или сохранении: \(error.localizedDescription)")
                 DispatchQueue.main.async {
                     self.errorMessage = error.localizedDescription
                 }

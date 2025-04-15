@@ -55,7 +55,7 @@ final class ItemDateFormatter : DateFormatter, @unchecked Sendable{
     
     override init() {
         super.init()
-        dateFormat = "dd/MM/yyyy"
+        dateFormat = "dd/MM/yy"
     }
     
     required init?(coder: NSCoder) {

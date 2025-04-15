@@ -8,6 +8,7 @@ struct ContentView: View {
 
     @FocusState private var isSearchFocused: Bool
 
+    @State private var didSave = false
     @State private var isRecording = false
     @State private var searchText: String = ""
     @State private var isNavigatingToNewTask = false
@@ -22,6 +23,14 @@ struct ContentView: View {
                 await viewModel.loadTasksIfNeeded()
             }
         }
+        .onChange(of: didSave) { newValue in
+            if newValue {
+                Task {
+                    await viewModel.loadTasksIfNeeded()
+                    didSave = false
+                }
+            }
+        }
     }
 
     @ViewBuilder
@@ -30,7 +39,7 @@ struct ContentView: View {
             header
             contentState
             NavigationLink(
-                destination: TaskDetailView(existingTask: selectedTask),
+                destination: TaskDetailView(existingTask: selectedTask, didSave: $didSave),
                 isActive: $isNavigatingToNewTask
             ) {
                 EmptyView()
@@ -108,16 +117,14 @@ struct ContentView: View {
         }
 
         return List {
-            ForEach(filteredItems, id: \.self) { (task: TaskEntity) in
-                NavigationLink(destination: TaskDetailView(existingTask: task)) {
+            ForEach(filteredItems, id: \.objectID) { (task: TaskEntity) in
+                NavigationLink(
+                    destination: TaskDetailView(existingTask: task, didSave: $didSave)
+                ) {
                     UIViewRowStyle(task: task)
                         .contextMenu {
                             Button {
-                                isNavigatingToNewTask = false
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                    selectedTask = task
-                                    isNavigatingToNewTask = true
-                                }
+                                selectedTask = task
                             } label: {
                                 Label("Редактировать", systemImage: "pencil")
                             }
@@ -131,17 +138,18 @@ struct ContentView: View {
                             Button(role: .destructive) {
                                 Task {
                                     await viewModel.delete(task: task)
-                                    }
+                                }
                             } label: {
                                 Label("Удалить", systemImage: "trash")
                             }
                         }
                 }
-                .listRowSeparator(.hidden)
             }
         }
         .listStyle(.plain)
+        .id(UUID())
     }
+
 
     private var taskFooter: some View {
         ZStack {

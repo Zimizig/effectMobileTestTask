@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C31F29D2DAE899100F91600 /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31F29C2DAE899100F91600 /* TaskDetailView.swift */; };
 		2C7D01982DA8A17C00FC8E3E /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7D01972DA8A17C00FC8E3E /* SpeechRecognizer.swift */; };
 		2CBE10EA2DA46F84005B7C7C /* effectMobileTestTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE10E32DA46F84005B7C7C /* effectMobileTestTask.xcdatamodeld */; };
 		2CBE10FB2DA48597005B7C7C /* YellowPrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE10FA2DA48597005B7C7C /* YellowPrimaryButtonStyle.swift */; };
@@ -14,7 +15,6 @@
 		2CBE11022DA60B1E005B7C7C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE11012DA60B1E005B7C7C /* NetworkService.swift */; };
 		2CBE11052DA6112E005B7C7C /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE11042DA6112E005B7C7C /* TaskListViewModel.swift */; };
 		2CBE110B2DA63520005B7C7C /* AppStorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE110A2DA63520005B7C7C /* AppStorageKeys.swift */; };
-		2CBE110E2DA68E35005B7C7C /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE110D2DA68E35005B7C7C /* TaskDetailView.swift */; };
 		2CFC85282DA46F0A008C51F0 /* TaskEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFC85262DA46F0A008C51F0 /* TaskEntity+CoreDataClass.swift */; };
 		2CFC85292DA46F0A008C51F0 /* TaskEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFC85272DA46F0A008C51F0 /* TaskEntity+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
@@ -37,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C31F29C2DAE899100F91600 /* TaskDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailView.swift; sourceTree = "<group>"; };
 		2C4A3DC42DA45D3F00CA818A /* effectMobileTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = effectMobileTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4A3DD62DA45D4100CA818A /* effectMobileTestTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = effectMobileTestTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4A3DE02DA45D4100CA818A /* effectMobileTestTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = effectMobileTestTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,7 +48,6 @@
 		2CBE11012DA60B1E005B7C7C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		2CBE11042DA6112E005B7C7C /* TaskListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
 		2CBE110A2DA63520005B7C7C /* AppStorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorageKeys.swift; sourceTree = "<group>"; };
-		2CBE110D2DA68E35005B7C7C /* TaskDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailView.swift; sourceTree = "<group>"; };
 		2CFC85262DA46F0A008C51F0 /* TaskEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2CFC85272DA46F0A008C51F0 /* TaskEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,7 +181,7 @@
 		2CBE110C2DA68E1E005B7C7C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2CBE110D2DA68E35005B7C7C /* TaskDetailView.swift */,
+				2C31F29C2DAE899100F91600 /* TaskDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -330,7 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CBE110E2DA68E35005B7C7C /* TaskDetailView.swift in Sources */,
+				2C31F29D2DAE899100F91600 /* TaskDetailView.swift in Sources */,
 				2CBE11022DA60B1E005B7C7C /* NetworkService.swift in Sources */,
 				2CFC85282DA46F0A008C51F0 /* TaskEntity+CoreDataClass.swift in Sources */,
 				2CFC85292DA46F0A008C51F0 /* TaskEntity+CoreDataProperties.swift in Sources */,
