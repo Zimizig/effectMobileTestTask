@@ -69,6 +69,7 @@ struct TaskDetailView: View {
             }
             .buttonStyle(YellowPrimaryButtonStyle())
             .padding(.top, 20)
+            .padding(.bottom, 25)
         }
         .padding(.horizontal, 20)
         .padding(.top, 28)

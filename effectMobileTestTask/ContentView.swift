@@ -116,40 +116,43 @@ struct ContentView: View {
             ($0.desc?.lowercased().contains(searchText.lowercased()) ?? false)
         }
 
-        return List {
-            ForEach(filteredItems, id: \.objectID) { (task: TaskEntity) in
-                NavigationLink(
-                    destination: TaskDetailView(existingTask: task, didSave: $didSave)
-                ) {
-                    UIViewRowStyle(task: task)
-                        .contextMenu {
-                            Button {
-                                selectedTask = task
-                            } label: {
-                                Label("Редактировать", systemImage: "pencil")
-                            }
-
-                            Button {
-                                share(task: task)
-                            } label: {
-                                Label("Поделиться", systemImage: "square.and.arrow.up")
-                            }
-
-                            Button(role: .destructive) {
-                                Task {
-                                    await viewModel.delete(task: task)
-                                }
-                            } label: {
-                                Label("Удалить", systemImage: "trash")
-                            }
+        return ScrollView {
+            LazyVStack(spacing: 16) {
+                ForEach(filteredItems, id: \.objectID) { (task: TaskEntity) in
+                    NavigationLink(
+                        destination: TaskDetailView(existingTask: task, didSave: $didSave)
+                    ) {
+                        UIViewRowStyle(task: task)
+                            .padding(.horizontal, 20)
+                    }
+                    .contextMenu {
+                        Button {
+                            selectedTask = task
+                        } label: {
+                            Label("Редактировать", systemImage: "pencil")
                         }
+
+                        Button {
+                            share(task: task)
+                        } label: {
+                            Label("Поделиться", systemImage: "square.and.arrow.up")
+                        }
+
+                        Button(role: .destructive) {
+                            Task {
+                                await viewModel.delete(task: task)
+                            }
+                        } label: {
+                            Label("Удалить", systemImage: "trash")
+                        }
+                    }
                 }
             }
+            .padding(.top, 8)
+            .padding(.bottom, 100)
         }
-        .listStyle(.plain)
         .id(UUID())
     }
-
 
     private var taskFooter: some View {
         ZStack {

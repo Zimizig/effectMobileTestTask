@@ -11,18 +11,26 @@ import Foundation
 struct UIViewRowStyle: View {
     
     let task: TaskEntity
+    var onDelete: (() -> Void)? = nil
+    
+    @GestureState private var dragOffset: CGFloat = 0
+    
+    @State private var offset: CGFloat = 0
+    @State private var showDelete: Bool = false
     
     var body: some View {
+        
         VStack(spacing: 0) {
+            
             HStack(alignment: .top, spacing: 12) {
-                
                 Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
                     .foregroundColor(.yellow)
                 
                 VStack(alignment: .leading, spacing: 6) {
-                    
                     Text(task.title ?? "Без названия")
                         .font(.headline)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
                         .foregroundColor(.primary)
                     
                     if let desc = task.desc {
